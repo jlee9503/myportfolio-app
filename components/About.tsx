@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { FiDownload } from "react-icons/fi";
 import Skills from "./Skills";
+import Link from "next/link";
 
 const About = () => {
   return (
@@ -35,10 +36,15 @@ const About = () => {
           <p className="md:leading-relaxed lg:leading-loose">
             {`Hello, I'm Jungsu, a Software Developer with over two years of experience in web development. I am enthusiastic about exploring new technologies and unleashing my creativity. I excel in both frontend and backend development, transforming unstructured and complex datasets into polished and intuitive visual applications. Known for my rapid learning ability, I quickly grasp new concepts and retain information effectively. In my recent role at a healthcare management company, I developed web and desktop applications, created visual representations of clinical and patient data, and updated database structures.`}
           </p>
-          <div className="text-white px-4 py-4 bg-blue-900 rounded-3xl flex justify-center items-center cursor-pointer w-full lg:w-36 mt-8">
+          <Link
+            href="/jungsu_lee_resume.pdf"
+            target="_blank"
+            download={true}
+            className="text-white px-4 py-4 bg-blue-900 rounded-3xl flex justify-center items-center cursor-pointer w-full lg:w-36 mt-8"
+          >
             <div className="mr-2">Resume</div>
             <FiDownload size={20} />
-          </div>
+          </Link>
         </div>
       </div>
 
