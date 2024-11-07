@@ -1,91 +1,113 @@
-import Image from "next/image";
-import Link from "next/link";
-import { FaExternalLinkAlt } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa";
+"use client";
+
+import Sidebar from "./Sidebar";
+import { useState } from "react";
+import ProjectGrid from "./ProjectGrid";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Projects = () => {
+  const [activeSection, setActiveSection] = useState<string>("data-analytics");
+
   return (
     <section
       id="projects-section"
-      className="min-h-dvh pt-[27%] md:pt-[20%] lg:pt-[15%] xl:pt-[10%] px-[7%]"
+      className="min-h-dvh py-[27%] md:py-[20%] lg:py-[15%] xl:py-[10%] px-[7%]"
     >
       <h1 className="font-bold text-2xl md:text-5xl mb-16 text-center">
         Projects
       </h1>
 
-      <div className="flex flex-wrap gap-8 lg:gap-12 justify-center items-center">
-        {[
-          [
-            "airbnbClone.png",
-            "Rent your home",
-            process.env.NEXT_PUBLIC_RENTAPP_URL as string,
-            process.env.NEXT_PUBLIC_RENTAPP_CODE as string,
-          ],
-          [
-            "threejs.png",
-            "Landing page theme",
-            process.env.NEXT_PUBLIC_LANDINGPAGE_URL as string,
-            process.env.NEXT_PUBLIC_LANDINGPAGE_CODE as string,
-          ],
-          [
-            "gmailOrganizer_delete.png",
-            "Gmail organizer",
-            "",
-            process.env.NEXT_PUBLIC_GMAIL_ORGANIZER_CODE as string,
-          ],
-          [
-            "ball_destroy.png",
-            "Ball destroy",
-            "",
-            process.env.NEXT_PUBLIC_BALL_DESTROY_CODE as string,
-          ],
-          [
-            "youtube_downloader.png",
-            "YouTube downloader",
-            "",
-            process.env.NEXT_PUBLIC_YOUTUBE_DOWNLOADER_CODE as string,
-          ],
-          [
-            "amazon_clone.png",
-            "Amazon clone",
-            process.env.NEXT_PUBLIC_AMAZON_CLONE_URL as string,
-            process.env.NEXT_PUBLIC_AMAZON_CLONE_CODE as string,
-          ],
-        ].map(([path, title, link, code], idx) => (
-          <div
-            key={idx}
-            className="relative group cursor-pointer mb-4 rounded-lg"
-          >
-            <Image
-              src={`/project_img/${path}`}
-              alt={title}
-              width="100"
-              height="100"
-              className="object-cover w-[350px] h-[200px] md:w-[400px] md:h-[250px] rounded-lg shadow-xl group-hover:scale-105"
-            />
-            <div className="bg-blue-900/80 absolute top-0 bottom-0 left-0 right-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity inset-0 rounded-lg scale-105 text-white flex justify-center items-center flex-col">
-              <h3 className="font-semibold text-xl capitalize">{title}</h3>
-              <div className="flex justify-center items-center gap-4 mt-4">
-                {link != "" && (
-                  <Link
-                    href={link}
-                    target="_blank"
-                    className="flex items-center gap-2 px-4 py-2 bg-white text-blue-900 hover:bg-blue-500 hover:text-white rounded-lg"
-                  >
-                    Demo <FaExternalLinkAlt />
-                  </Link>
-                )}
-                <Link
-                  href={code}
-                  target="_blank"
-                  className="flex items-center gap-2 px-4 py-2 bg-white text-blue-900 hover:bg-blue-500 hover:text-white rounded-lg"
-                >
-                  Code <FaGithub />
-                </Link>
-              </div>
-            </div>
-          </div>
-        ))}
+      <div className="flex flex-col xl:flex-row min-h-screen">
+        <Sidebar
+          activeSection={activeSection}
+          setActiveSection={setActiveSection}
+        />
+
+        <AnimatePresence mode="wait">
+          {activeSection === "data-analytics" ? (
+            <motion.div
+              key="data-analytics"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="flex flex-wrap gap-8 lg:gap-12 justify-center items-center xl:basis-4/5"
+            >
+              <ProjectGrid
+                path="churn.png"
+                title="Telecommunications Churn"
+                link={
+                  process.env.NEXT_PUBLIC_TELECOMMUNICATION_CHURN_1 as string
+                }
+                link_2={
+                  process.env.NEXT_PUBLIC_TELECOMMUNICATION_CHURN_2 as string
+                }
+              />
+              <ProjectGrid
+                path="streaming-services.jpg"
+                title="Streaming Services Analytics"
+                link={
+                  process.env.NEXT_PUBLIC_STREAMING_SERVICES_ANALYSIS as string
+                }
+              />
+              <ProjectGrid
+                path="epl.jpg"
+                title="EPL Stats Analytics"
+                code={process.env.NEXT_PUBLIC_EPL_DATA_ANALYSIS as string}
+              />
+              <ProjectGrid
+                path="sales-dashboard.png"
+                title="Customer Sales Dashboard"
+                link={
+                  process.env.NEXT_PUBLIC_CUSTOMER_SALES_DASHBOARD as string
+                }
+              />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="web-development"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="flex flex-wrap gap-8 lg:gap-12 justify-center items-center xl:basis-4/5"
+            >
+              <ProjectGrid
+                path="airbnbClone.png"
+                title="Rent your home"
+                link={process.env.NEXT_PUBLIC_RENTAPP_URL as string}
+                code={process.env.NEXT_PUBLIC_RENTAPP_CODE as string}
+              />
+              <ProjectGrid
+                path="threejs.png"
+                title="Landing page theme"
+                link={process.env.NEXT_PUBLIC_LANDINGPAGE_URL as string}
+                code={process.env.NEXT_PUBLIC_LANDINGPAGE_CODE as string}
+              />
+              <ProjectGrid
+                path="amazon_clone.png"
+                title="Amazon clone"
+                link={process.env.NEXT_PUBLIC_AMAZON_CLONE_URL as string}
+                code={process.env.NEXT_PUBLIC_AMAZON_CLONE_CODE as string}
+              />
+              <ProjectGrid
+                path="gmailOrganizer_delete.png"
+                title="Gmail organizer"
+                code={process.env.NEXT_PUBLIC_GMAIL_ORGANIZER_CODE as string}
+              />
+              <ProjectGrid
+                path="youtube_downloader.png"
+                title="YouTube downloader"
+                code={process.env.NEXT_PUBLIC_YOUTUBE_DOWNLOADER_CODE as string}
+              />
+              <ProjectGrid
+                path="ball_destroy.png"
+                title="Ball Destory"
+                code={process.env.NEXT_PUBLIC_BALL_DESTROY_CODE as string}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
