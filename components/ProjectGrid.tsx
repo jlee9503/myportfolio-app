@@ -30,7 +30,7 @@ const ProjectGrid = ({ path, title, link, link_2, code }: ProjectList) => {
               target="_blank"
               className="flex items-center gap-2 px-4 py-2 bg-white text-blue-900 hover:bg-blue-500 hover:text-white rounded-lg"
             >
-              Demo {link_2 != undefined || undefined ? "1" : ""} <FaExternalLinkAlt />
+              Demo {link_2 != undefined ? "1" : ""} <FaExternalLinkAlt />
             </Link>
           )}
           {link_2 != undefined && (
