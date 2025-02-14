@@ -17,7 +17,7 @@ const Projects = () => {
         Projects
       </h1>
 
-      <div className="flex flex-col xl:flex-row min-h-screen">
+      <div className="flex flex-col min-h-screen gap-8 items-center">
         <Sidebar
           activeSection={activeSection}
           setActiveSection={setActiveSection}
@@ -33,6 +33,19 @@ const Projects = () => {
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="flex flex-wrap gap-8 lg:gap-12 justify-center items-center xl:basis-4/5"
             >
+              <ProjectGrid
+                path="medical-dashboard.png"
+                title="Hospital Readmission Analysis"
+                link={
+                  process.env.NEXT_PUBLIC_MEDICAL_READMISSION_ANALYSIS as string
+                }
+                link_title="Predictive Analysis"
+                link_2={
+                  process.env
+                    .NEXT_PUBLIC_MEDICAL_READMISSION_DASHBOARD as string
+                }
+                link_2_title="Dashboard"
+              />
               <ProjectGrid
                 path="churn.png"
                 title="Telecommunications Churn"

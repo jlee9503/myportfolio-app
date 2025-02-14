@@ -19,14 +19,14 @@ const Experience = () => {
 
         {[
           [
-            "Bachelor of Science in Information Systems",
-            "Aug 2015 - May 2020",
-            "University of Maryland Baltimore County",
-          ],
-          [
             "Master of Science in Data Analytics",
             "Jun 2024 - Present",
             "Western Governors University"
+          ],
+          [
+            "Bachelor of Science in Information Systems",
+            "Aug 2015 - May 2020",
+            "University of Maryland Baltimore County",
           ]
         ].map(([position, date, companyName], idx) => (
           <div key={idx} className="mb-8 last:mb-0">

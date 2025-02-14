@@ -38,10 +38,10 @@ const Navbar = () => {
       >
         <Link href="/" onClick={scrollToTop}>
           <Image
-            src="/logo-light.png"
+            src="/logo.png"
             alt="logo-img"
-            width={80}
-            height={30}
+            width={100}
+            height={50}
             className="object-cover"
           />
         </Link>

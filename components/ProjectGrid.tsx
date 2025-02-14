@@ -1,17 +1,27 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react'
-import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 
 interface ProjectList {
   path: string;
   title: string;
   link?: string;
+  link_title?: string;
   link_2?: string;
+  link_2_title?: string;
   code?: string;
 }
 
-const ProjectGrid = ({ path, title, link, link_2, code }: ProjectList) => {
+const ProjectGrid = ({
+  path,
+  title,
+  link,
+  link_title,
+  link_2,
+  link_2_title,
+  code,
+}: ProjectList) => {
   return (
     <div className="relative group cursor-pointer mb-4 rounded-lg">
       <Image
@@ -30,7 +40,9 @@ const ProjectGrid = ({ path, title, link, link_2, code }: ProjectList) => {
               target="_blank"
               className="flex items-center gap-2 px-4 py-2 bg-white text-blue-900 hover:bg-blue-500 hover:text-white rounded-lg"
             >
-              Demo {link_2 != undefined ? "1" : ""} <FaExternalLinkAlt />
+              {link_title != undefined ? link_title : "Demo"}{" "}
+              {link_2 != undefined && link_title == undefined ? "1" : ""}{" "}
+              <FaExternalLinkAlt />
             </Link>
           )}
           {link_2 != undefined && (
@@ -39,7 +51,8 @@ const ProjectGrid = ({ path, title, link, link_2, code }: ProjectList) => {
               target="_blank"
               className="flex items-center gap-2 px-4 py-2 bg-white text-blue-900 hover:bg-blue-500 hover:text-white rounded-lg"
             >
-              Demo 2 <FaExternalLinkAlt />
+              {link_2_title != undefined ? link_2_title : "Demo 2"}{" "}
+              <FaExternalLinkAlt />
             </Link>
           )}
           {code != undefined && (
@@ -57,4 +70,4 @@ const ProjectGrid = ({ path, title, link, link_2, code }: ProjectList) => {
   );
 };
 
-export default ProjectGrid
+export default ProjectGrid;
