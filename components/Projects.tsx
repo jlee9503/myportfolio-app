@@ -39,12 +39,17 @@ const Projects = () => {
                 link={
                   process.env.NEXT_PUBLIC_MEDICAL_READMISSION_ANALYSIS as string
                 }
-                link_title="Predictive Analysis"
+                link_title="Analysis"
                 link_2={
                   process.env
                     .NEXT_PUBLIC_MEDICAL_READMISSION_DASHBOARD as string
                 }
                 link_2_title="Dashboard"
+              />
+              <ProjectGrid
+                path="fitness_tracker_dashboard.png"
+                title="Fitness Tracker Dashboard"
+                link={process.env.NEXT_PUBLIC_FITNESS_TRACKER_DASHBOARD}
               />
               <ProjectGrid
                 path="churn.png"
